@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Will remove the homew .vimrc
-rm -r ~/.vimrc 
+rm -f ~/.vimrc 
 # Will replace with nothing
-sed source ∼/.dotfiles/bashrc custom
+sed -i ∼/.dotfiles/bashrc custom
 # Will remove directory
-rm -r ~/.TRASH
+rm -rf ~/.TRASH
 
