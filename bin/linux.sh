@@ -1,14 +1,18 @@
 #!/bin/bash
 
-# Checks the users data
-lsb_release
-# Makes a hidden trash directory
-mkdir ~/.TRASH
-# Will rename the file
-mv .vimrc .bup_vimrc
-# displays a message
-echo".vimrc has been change to .bup_vimrc"|touch linuxsetup.log
-# Will overwrite the command
-mv etc/vimrc> .vimrc
+CURRENT_OS=$(name)
+#Check the linux system
+if [[ "CURRENT_OS" != *"Linux"* ]]; then
+	echo "ERROR" >> linuxsetup.log
+	exit
+fi
 
-source ∼/.dotfiles/etc/bashrc custom
+mkdir -p ~/.TRASH
+
+if [[ -f ~/.vimrc ]]; then 
+	mv ~/.vimrc ~/.bup_vimrc
+fi
+
+echo ".vimrc changed to .bup_vimrc" >> ~/.dotfiles/bin/linux.setup.log
+cat ~/.dotfiles/etc/vimrc > ~/.vimrc
+echo "source ~/.dotfiles/etc/bashrc_custom" >> ~/.bashrc
